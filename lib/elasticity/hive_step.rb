@@ -42,7 +42,7 @@ module Elasticity
       'Elasticity - Install Hive'
     end
 
-    def self.aws_installation_steps
+    def self.aws_installation_steps(version='latest')
       steps = [
         {
           :action_on_failure => 'TERMINATE_JOB_FLOW',
