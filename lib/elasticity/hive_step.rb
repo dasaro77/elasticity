@@ -19,8 +19,14 @@ module Elasticity
     end
 
     def to_aws_step(_)
-      args = ["s3://elasticmapreduce/libs/hive/hive-script --base-path s3://elasticmapreduce/libs/hive/ --hive-versions #{version} --run-hive-script --args"]
-      args.concat(['-f', @script])
+      args = %W(
+        s3://elasticmapreduce/libs/hive/hive-script 
+        --base-path s3://elasticmapreduce/libs/hive/ 
+        --hive-versions #{version} 
+        --run-hive-script 
+        --args
+        -f #{@script}
+      )
       @variables.keys.sort.each do |name|
         args.concat(['-d', "#{name}=#{@variables[name]}"])
       end
