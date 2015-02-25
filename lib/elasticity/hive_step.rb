@@ -54,7 +54,12 @@ module Elasticity
           :action_on_failure => 'TERMINATE_JOB_FLOW',
           :hadoop_jar_step => {
             :jar => 's3://elasticmapreduce/libs/script-runner/script-runner.jar',
-            :args => "s3://elasticmapreduce/libs/hive/hive-script --base-path s3://elasticmapreduce/libs/hive/ --install-hive --hive-versions #{version}"
+            :args => %W(
+              s3://elasticmapreduce/libs/hive/hive-script 
+              --base-path s3://elasticmapreduce/libs/hive/ 
+              --install-hive 
+              --hive-versions #{version}
+            )
           },
           :name => aws_installation_step_name
         }
