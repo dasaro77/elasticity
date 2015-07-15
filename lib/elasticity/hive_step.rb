@@ -25,6 +25,7 @@ module Elasticity
         --hive-versions #{version} 
         --run-hive-script 
         --args
+        -v
         -f #{@script}
       )
       @variables.keys.sort.each do |name|
